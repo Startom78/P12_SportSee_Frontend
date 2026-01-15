@@ -1,0 +1,35 @@
+aside{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    width: 76px;
+    height: calc(100vh - 76px);
+    background-color: black;
+}
+
+.menu-sidebar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+    color: white;
+}
+
+ .menu-sidebar .navText{
+    padding: 10px;
+    background-color: white;
+    margin-top: 1rem;
+}
+
+.copyright{
+    color: white;
+    position: absolute;
+    bottom: 28px;
+    left: 50px;
+    writing-mode: vertical-rl;
+    white-space: nowrap;
+    height: 56px;
+    transform: translate(-50%) rotate(180deg);
+    padding-left: 2rem;
+}
