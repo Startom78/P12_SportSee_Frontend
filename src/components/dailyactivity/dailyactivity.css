@@ -1,5 +1,29 @@
 .activityBackground{
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     background-color: #FBFBFB;
+    border: 1px solid red;
+    max-width: 835px;
+    min-height: 320px;
+    margin : 77px 107px 0 77px;
+}
+
+.indicators{
+    display: flex;
+    flex-direction: row;
+    height: fit-content;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid blue;
+    font-size: 14px;
+}
+
+.indicator{
+    display: flex;
+    border: 1px solid green;
+}
+
+.textColor{
+    color: grey;
 }

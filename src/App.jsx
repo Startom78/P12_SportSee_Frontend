@@ -2,6 +2,7 @@ import Header from './components/header/Header'
 import Sidebar from './components/sidebar/Sidebar'
 import Greetings from './components/greetings/Greetings'
 import DailyActivity from './components/dailyactivity/Dailyactivity'
+import Nutriments from './components/nutriments/Nutriments'
 
 function App() {
 
@@ -14,6 +15,7 @@ function App() {
         <div>
         <Greetings />
         <DailyActivity />
+        <Nutriments />
         </div>
       </main>
 

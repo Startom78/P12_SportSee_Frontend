@@ -1,0 +1,69 @@
+.nutrimentContainer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: lightgrey;
+    border: 1px solid green;
+    width: 10%;
+    height: 124px;
+    
+}
+
+.iconContainerKcal{
+    border: 1px solid turquoise;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background-color: rgba(255,0,0,0.25);
+    margin-left: 16px;
+}
+
+.iconContainerProteines{
+    border: 1px solid turquoise;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background-color: rgba(74, 184, 255, 0.25);
+    margin-left: 16px;
+
+}
+
+.iconContainerGlucides{
+    border: 1px solid turquoise;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background-color: rgba(249, 206, 35, 0.25);
+    margin-left: 16px;
+
+}
+
+.iconContainerLipides{
+    border: 1px solid turquoise;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    background-color: rgba(253, 81, 129, 0.1);
+    margin-left: 16px;
+
+}
+
+.bold{
+    font-weight: bold;
+}
+
+.infos{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    border: 1px solid red;
+}
