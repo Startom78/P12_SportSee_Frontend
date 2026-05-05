@@ -3,19 +3,34 @@ import Sidebar from './components/sidebar/Sidebar'
 import Greetings from './components/greetings/Greetings'
 import DailyActivity from './components/dailyactivity/Dailyactivity'
 import Nutriments from './components/nutriments/Nutriments'
+import AverageSessions from './components/averagesessions/Averagesessions'
+import Hexagongraphic from './components/hexagondiagram/Hexagongraphic'
+import Score from './components/score/Score'
+import API from '../../backend/app/Api.jsx'
+
 
 function App() {
-
+  API;
   return (
     <>
       <Header />
       <div className='main-all'>
         <Sidebar />
       <main>
-        <div>
         <Greetings />
-        <DailyActivity />
-        <Nutriments />
+        <div className='main-blocks'>
+            <div>
+             <DailyActivity />
+             <div className='activities'>
+             <AverageSessions />
+             <Hexagongraphic />
+             <Score />
+             </div>
+            </div>
+
+            <aside>
+              <Nutriments />
+            </aside>
         </div>
       </main>
 

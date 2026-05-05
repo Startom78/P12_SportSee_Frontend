@@ -4,7 +4,7 @@
     justify-content: space-between;
     background-color: #FBFBFB;
     border: 1px solid red;
-    max-width: 835px;
+    min-width: 1024px;
     min-height: 320px;
     margin : 77px 107px 0 77px;
 }
