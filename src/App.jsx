@@ -6,7 +6,6 @@ import Nutriments from './components/nutriments/Nutriments'
 import AverageSessions from './components/averagesessions/Averagesessions'
 import Hexagongraphic from './components/hexagondiagram/Hexagongraphic'
 import Score from './components/score/Score'
-import API from '../../backend/app/Api.jsx'
 
 
 function App() {
@@ -21,12 +20,7 @@ function App() {
         <div className='main-blocks'>
             <div>
              <DailyActivity />
-             <div className='activities'>
-             <AverageSessions />
-             <Hexagongraphic />
-             <Score />
-             </div>
-            </div>
+            </div> 
 
             <aside>
               <Nutriments />
