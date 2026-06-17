@@ -6,11 +6,9 @@ import Nutriments from './components/nutriments/Nutriments'
 import AverageSessions from './components/averagesessions/Averagesessions'
 import Hexagongraphic from './components/hexagondiagram/Hexagongraphic'
 import Score from './components/score/Score'
-import * as d3 from "d3";
-
 
 function App() {
-  API;
+  
   return (
     <>
       <Header />
@@ -21,6 +19,9 @@ function App() {
         <div className='main-blocks'>
             <div>
              <DailyActivity />
+             <AverageSessions />
+             <Hexagongraphic />
+             <Score />
             </div> 
 
             <aside>
