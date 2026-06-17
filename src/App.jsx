@@ -17,11 +17,13 @@ function App() {
       <main>
         <Greetings />
         <div className='main-blocks'>
-            <div>
-             <DailyActivity />
-             <AverageSessions />
-             <Hexagongraphic />
-             <Score />
+            <div className='activities-blocks'>
+             <DailyActivity /> 
+             <div className='graphics-blocks'>
+              <AverageSessions />          
+              <Hexagongraphic />
+              <Score />
+             </div>
             </div> 
 
             <aside>
