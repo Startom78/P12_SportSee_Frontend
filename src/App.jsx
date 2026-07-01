@@ -25,10 +25,10 @@ function App() {
               <Score />
              </div>
             </div> 
-
-            <aside>
+            <aside className='nutriments-blocks'>
               <Nutriments />
             </aside>
+
         </div>
       </main>
 
