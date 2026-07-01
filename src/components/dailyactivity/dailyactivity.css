@@ -1,12 +1,19 @@
 .activityBackground{
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
     background-color: #FBFBFB;
     border: 1px solid red;
     width: 100%;
     min-height : 150px;
     margin : 77px 107px 77px 77px;
+    padding: 20px 30px;
+}
+
+.activityHeader{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .indicators{
@@ -17,11 +24,30 @@
     justify-content: center;
     border: 1px solid blue;
     font-size: 14px;
+    gap: 30px;
 }
 
 .indicator{
     display: flex;
+    align-items: center;
+    gap: 8px;
     border: 1px solid green;
+}
+
+.chartContainer{
+    margin-top: 20px;
+}
+
+.customTooltip{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #E60000;
+    color: #FFFFFF;
+    padding: 10px;
+    font-size: 12px;
+    text-align: center;
 }
 
 .textColor{
