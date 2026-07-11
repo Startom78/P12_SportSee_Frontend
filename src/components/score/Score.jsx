@@ -1,12 +1,9 @@
 import { RadialBarChart, RadialBar, ResponsiveContainer } from 'recharts';
-import mockedData from '../../services/mockeddata.jsx';
+import { getUserById } from '../../services/UserCalls.jsx';
 import './score.css';
 
-const { USER_MAIN_DATA } = mockedData;
-const userId = 12;
-
-function Score(){
-    const userMainData = USER_MAIN_DATA.find((user) => user.id === userId);
+function Score({ userId }){
+    const userMainData = getUserById(userId);
     const { todayScore } = userMainData;
     const data = [{ value: todayScore }];
 

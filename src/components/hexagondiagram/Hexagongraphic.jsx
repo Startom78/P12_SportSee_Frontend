@@ -1,11 +1,8 @@
 import { RadarChart, PolarGrid, PolarAngleAxis, Radar, ResponsiveContainer } from 'recharts';
-import mockedData from '../../services/mockeddata.jsx';
+import { getUserPerformance } from '../../services/UserCalls.jsx';
 import './hexagon.css';
 
-const { USER_PERFORMANCE } = mockedData;
-const userId = 12;
-
-const kindLabels = {
+const hexagonTitles = {
     cardio: 'Cardio',
     energy: 'Energie',
     endurance: 'Endurance',
@@ -22,12 +19,12 @@ function CustomTick({ payload, x, y, textAnchor }) {
     );
 }
 
-function Hexagongraphic(){
-    const userPerformance = USER_PERFORMANCE.find((user) => user.userId === userId);
+function Hexagongraphic({ userId }){
+    const userPerformance = getUserPerformance(userId);
     const data = [...userPerformance.data]
         .reverse()
         .map(({ kind, value }) => ({
-            subject: kindLabels[userPerformance.kind[kind]],
+            subject: hexagonTitles[userPerformance.kind[kind]],
             value
         }));
 

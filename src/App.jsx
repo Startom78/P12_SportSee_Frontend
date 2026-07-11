@@ -1,3 +1,4 @@
+import { useParams } from 'react-router-dom'
 import Header from './components/header/Header'
 import Sidebar from './components/sidebar/Sidebar'
 import Greetings from './components/greetings/Greetings'
@@ -8,25 +9,27 @@ import Hexagongraphic from './components/hexagondiagram/Hexagongraphic'
 import Score from './components/score/Score'
 
 function App() {
-  
+  const { userId } = useParams();
+  const currentUserId = Number(userId);
+
   return (
     <>
       <Header />
       <div className='main-all'>
         <Sidebar />
       <main>
-        <Greetings />
+        <Greetings userId={currentUserId} />
         <div className='main-blocks'>
             <div className='activities-blocks'>
-             <DailyActivity /> 
+             <DailyActivity userId={currentUserId} />
              <div className='graphics-blocks'>
-              <AverageSessions />          
-              <Hexagongraphic />
-              <Score />
+              <AverageSessions userId={currentUserId} />
+              <Hexagongraphic userId={currentUserId} />
+              <Score userId={currentUserId} />
              </div>
-            </div> 
+            </div>
             <aside className='nutriments-blocks'>
-              <Nutriments />
+              <Nutriments userId={currentUserId} />
             </aside>
 
         </div>

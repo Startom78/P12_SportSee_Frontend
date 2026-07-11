@@ -1,6 +1,10 @@
+import { getUserById } from '../../services/UserCalls.jsx';
 import './nutriments.css'
 
-function Nutriments(){
+function Nutriments({ userId }){
+    const userMainData = getUserById(userId);
+    const { calorieCount, proteinCount, carbohydrateCount, lipidCount } = userMainData.keyData;
+
     return(
         <>
         <div className='nutrimentsContainer'>
@@ -13,8 +17,7 @@ function Nutriments(){
                 </div>
 
                 <div className='infos'>
-                    <p className='bold'> 1,930kCal </p>
-                    <p className='textColor'> Calories </p>
+                    <div className='bold'> {calorieCount.toLocaleString('en-US')}kCal <br></br> Calories</div>
                 </div>
             </div>
 
@@ -27,8 +30,7 @@ function Nutriments(){
                 </div>
 
                 <div className='infos'>
-                    <p className='bold'> 155g </p>
-                    <p className='textColor'> Protéines </p>
+                    <div className='bold'> {proteinCount.toLocaleString('en-US')}g <br></br> Protéines</div>
                 </div>
             </div>
 
@@ -43,8 +45,7 @@ function Nutriments(){
                 </div>
 
                 <div className='infos'>
-                    <p className='bold'> 290g </p>
-                    <p className='textColor'> Glucides </p>
+                    <div className='bold'> {carbohydrateCount.toLocaleString('en-US')}g <br></br> Glucides</div>
                 </div>
             </div>
 
@@ -59,8 +60,7 @@ function Nutriments(){
                 </div>
 
                 <div className='infos'>
-                    <p className='bold'> 50g </p>
-                    <p className='textColor'> Lipides </p>
+                    <div className='bold'> {lipidCount.toLocaleString('en-US')}g <br></br> Lipides</div>
                 </div>
             </div>
 

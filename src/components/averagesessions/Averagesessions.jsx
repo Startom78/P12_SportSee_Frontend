@@ -1,9 +1,7 @@
 import { LineChart, Line, XAxis, Tooltip, ResponsiveContainer, Rectangle } from 'recharts';
-import mockedData from '../../services/mockeddata.jsx';
+import { getUserAverageSessions } from '../../services/UserCalls.jsx';
 import './averagesessions.css';
 
-const { USER_AVERAGE_SESSIONS } = mockedData;
-const userId = 12;
 const dayLabels = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
 
 function CustomTooltip({ active, payload }) {
@@ -32,8 +30,8 @@ function CustomCursor({ points, top, left, width, height }) {
     );
 }
 
-function AverageSessions(){
-    const userSessions = USER_AVERAGE_SESSIONS.find((user) => user.userId === userId);
+function AverageSessions({ userId }){
+    const userSessions = getUserAverageSessions(userId);
     const data = userSessions.sessions.map((session) => ({
         day: dayLabels[session.day - 1],
         sessionLength: session.sessionLength
@@ -42,7 +40,8 @@ function AverageSessions(){
     return(
         <>
             <div className="averageSessionsCss">
-                <ResponsiveContainer width="100%" height="100%">
+                <div className ="averageSessionText"> Durée moyenne des <br></br>sessions  </div>
+                <ResponsiveContainer className="sessionsChartWrapper" width="100%" height="100%">
                     <LineChart data={data} margin={{ top: 20, right: 0, left: 0, bottom: 5 }}>
                         <defs>
                             <linearGradient id="sessionsCursorGradient" x1="0" y1="0" x2="1" y2="0">
@@ -54,7 +53,7 @@ function AverageSessions(){
                             dataKey="day"
                             axisLine={false}
                             tickLine={false}
-                            tick={{ fill: 'rgba(255, 255, 255, 0.6)', fontSize: 12 }}
+                            tick={{ fill: 'rgba(255, 255, 255, 0.5)', fontSize: 12 }}
                             padding={{ left: 10, right: 10 }}
                         />
                         <Tooltip content={<CustomTooltip />} cursor={<CustomCursor />} />

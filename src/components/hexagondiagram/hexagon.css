@@ -1,6 +1,7 @@
 .hexagon{
-    flex: 1;
-    height: 100%;
+    flex: 0 0 auto;
+    aspect-ratio: 1 / 1;
+    height: 280px;
     background-color: #282D30;
     border-radius: 5px;
 }

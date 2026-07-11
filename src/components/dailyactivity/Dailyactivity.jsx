@@ -1,9 +1,6 @@
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import mockedData from '../../services/mockeddata.jsx';
+import { getUserActivity } from '../../services/UserCalls.jsx';
 import './dailyactivity.css';
-
-const { USER_ACTIVITY } = mockedData;
-const userId = 12;
 
 function CustomTooltip({ active, payload }) {
     if (active && payload && payload.length) {
@@ -20,8 +17,8 @@ function CustomTooltip({ active, payload }) {
     return null;
 }
 
-function DailyActivity(){
-    const userActivity = USER_ACTIVITY.find((user) => user.userId === userId);
+function DailyActivity({ userId }){
+    const userActivity = getUserActivity(userId);
     const data = userActivity.sessions.map((session, index) => ({
         day: index + 1,
         kilogram: session.kilogram,
