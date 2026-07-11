@@ -3,7 +3,7 @@
     flex-direction: column;
     flex: 0 0 auto;
     aspect-ratio: 1 / 1;
-    height: 280px;
+    height: clamp(140px, 26vh, 280px);
     background-color: blue;
     border-radius: 5px;
     padding: 20px 30px;

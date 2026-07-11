@@ -58,6 +58,11 @@
     font-weight: bold;
 }
 
+.nutrimentLabel{
+    font-size: 12px;
+    color: grey;
+}
+
 .infos{
     display: flex;
     flex-direction: column;

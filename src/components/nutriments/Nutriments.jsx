@@ -17,7 +17,7 @@ function Nutriments({ userId }){
                 </div>
 
                 <div className='infos'>
-                    <div className='bold'> {calorieCount.toLocaleString('en-US')}kCal <br></br> Calories</div>
+                    <div className='bold'> {calorieCount.toLocaleString('en-US')}kCal <br></br> <span className='nutrimentLabel'>Calories</span></div>
                 </div>
             </div>
 
@@ -30,7 +30,7 @@ function Nutriments({ userId }){
                 </div>
 
                 <div className='infos'>
-                    <div className='bold'> {proteinCount.toLocaleString('en-US')}g <br></br> Protéines</div>
+                    <div className='bold'> {proteinCount.toLocaleString('en-US')}g <br></br> <span className='nutrimentLabel'>Protéines</span></div>
                 </div>
             </div>
 
@@ -45,7 +45,7 @@ function Nutriments({ userId }){
                 </div>
 
                 <div className='infos'>
-                    <div className='bold'> {carbohydrateCount.toLocaleString('en-US')}g <br></br> Glucides</div>
+                    <div className='bold'> {carbohydrateCount.toLocaleString('en-US')}g <br></br> <span className='nutrimentLabel'>Glucides</span></div>
                 </div>
             </div>
 
@@ -60,7 +60,7 @@ function Nutriments({ userId }){
                 </div>
 
                 <div className='infos'>
-                    <div className='bold'> {lipidCount.toLocaleString('en-US')}g <br></br> Lipides</div>
+                    <div className='bold'> {lipidCount.toLocaleString('en-US')}g <br></br> <span className='nutrimentLabel'>Lipides</span></div>
                 </div>
             </div>
 
