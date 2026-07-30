@@ -1,12 +1,15 @@
 h1{
     font-size: 36px;
+}
+
+.greetings-firstname{
     color: red;
 }
 
 .greetings{
-    margin: clamp(20px, 6vh, 77px) 0 0 77px;
+    margin: clamp(15px, 4vh, 77px) 0 0 77px;
 }
 
 .greetings p{
-    margin-top: clamp(10px, 3vh, 41px);
+    margin-top: clamp(8px, 2vh, 41px);
 }

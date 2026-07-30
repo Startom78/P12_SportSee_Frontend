@@ -1,5 +1,4 @@
 import { RadarChart, PolarGrid, PolarAngleAxis, Radar, ResponsiveContainer } from 'recharts';
-import { getUserPerformance } from '../../services/UserCalls.jsx';
 import './hexagon.css';
 
 const hexagonTitles = {
@@ -19,8 +18,7 @@ function CustomTick({ payload, x, y, textAnchor }) {
     );
 }
 
-function Hexagongraphic({ userId }){
-    const userPerformance = getUserPerformance(userId);
+function Hexagongraphic({ userPerformance }){
     const data = [...userPerformance.data]
         .reverse()
         .map(({ kind, value }) => ({

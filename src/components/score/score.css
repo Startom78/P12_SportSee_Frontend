@@ -1,17 +1,17 @@
 .score{
     display: flex;
     flex-direction: column;
-    flex: 0 0 auto;
+    flex: 0 1 auto;
     aspect-ratio: 1 / 1;
-    height: clamp(140px, 26vh, 280px);
-    background-color: blue;
+    height: clamp(210px, min(39vh, calc((100vw - 562px) / 3)), 420px);
     border-radius: 5px;
     padding: 20px 30px;
     box-sizing: border-box;
+    background-color: rgba(0, 0, 0, 0.05);
 }
 
 .scoreTitle{
-    font-size: 15px;
+    font-size: 20px;
     font-weight: 600;
     color: #20253A;
 }

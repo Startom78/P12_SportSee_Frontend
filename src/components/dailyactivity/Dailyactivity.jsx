@@ -1,5 +1,4 @@
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
-import { getUserActivity } from '../../services/UserCalls.jsx';
 import './dailyactivity.css';
 
 function CustomTooltip({ active, payload }) {
@@ -17,8 +16,7 @@ function CustomTooltip({ active, payload }) {
     return null;
 }
 
-function DailyActivity({ userId }){
-    const userActivity = getUserActivity(userId);
+function DailyActivity({ userActivity }){
     const data = userActivity.sessions.map((session, index) => ({
         day: index + 1,
         kilogram: session.kilogram,

@@ -1,8 +1,6 @@
-import { getUserById } from '../../services/UserCalls.jsx';
 import './greetings.css'
 
-function Greetings({ userId }){
-    const userMainData = getUserById(userId);
+function Greetings({ userMainData }){
     const { firstName } = userMainData.userInfos;
 
     return (
@@ -10,7 +8,7 @@ function Greetings({ userId }){
             <div className="greetings">
 
             <div>
-                <h1> Bonjour {firstName} </h1>
+                <h1> Bonjour <span className="greetings-firstname">{firstName}</span> </h1>
             </div>
             <p> Félicitations ! Vous avez explosé vos objectifs hier 👏 </p>
 

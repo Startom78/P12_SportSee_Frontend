@@ -1,7 +1,7 @@
 .hexagon{
-    flex: 0 0 auto;
+    flex: 0 1 auto;
     aspect-ratio: 1 / 1;
-    height: clamp(140px, 26vh, 280px);
+    height: clamp(210px, min(39vh, calc((100vw - 562px) / 3)), 420px);
     background-color: #282D30;
     border-radius: 5px;
 }

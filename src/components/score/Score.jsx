@@ -1,9 +1,7 @@
 import { RadialBarChart, RadialBar, ResponsiveContainer } from 'recharts';
-import { getUserById } from '../../services/UserCalls.jsx';
 import './score.css';
 
-function Score({ userId }){
-    const userMainData = getUserById(userId);
+function Score({ userMainData }){
     const { todayScore } = userMainData;
     const data = [{ value: todayScore }];
 
@@ -19,8 +17,8 @@ function Score({ userId }){
                         <RadialBarChart
                             cx="50%"
                             cy="50%"
-                            innerRadius="75%"
-                            outerRadius="85%"
+                            innerRadius="65%"
+                            outerRadius="75%"
                             barSize={8}
                             data={data}
                             startAngle={90}

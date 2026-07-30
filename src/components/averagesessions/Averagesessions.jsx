@@ -1,5 +1,4 @@
-import { LineChart, Line, XAxis, Tooltip, ResponsiveContainer, Rectangle } from 'recharts';
-import { getUserAverageSessions } from '../../services/UserCalls.jsx';
+import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, Rectangle } from 'recharts';
 import './averagesessions.css';
 
 const dayLabels = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
@@ -30,9 +29,8 @@ function CustomCursor({ points, top, left, width, height }) {
     );
 }
 
-function AverageSessions({ userId }){
-    const userSessions = getUserAverageSessions(userId);
-    const data = userSessions.sessions.map((session) => ({
+function AverageSessions({ userAverageSessions }){
+    const data = userAverageSessions.sessions.map((session) => ({
         day: dayLabels[session.day - 1],
         sessionLength: session.sessionLength
     }));
@@ -55,6 +53,11 @@ function AverageSessions({ userId }){
                             tickLine={false}
                             tick={{ fill: 'rgba(255, 255, 255, 0.5)', fontSize: 12 }}
                             padding={{ left: 10, right: 10 }}
+                        />
+                        <YAxis
+                            dataKey="sessionLength"
+                            domain={['dataMin - 15', 'dataMax + 15']}
+                            hide
                         />
                         <Tooltip content={<CustomTooltip />} cursor={<CustomCursor />} />
                         <Line

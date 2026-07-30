@@ -1,8 +1,6 @@
-import { getUserById } from '../../services/UserCalls.jsx';
 import './nutriments.css'
 
-function Nutriments({ userId }){
-    const userMainData = getUserById(userId);
+function Nutriments({ userMainData }){
     const { calorieCount, proteinCount, carbohydrateCount, lipidCount } = userMainData.keyData;
 
     return(

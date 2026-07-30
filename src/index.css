@@ -26,7 +26,7 @@ main{
   flex-direction: row;
   align-items: stretch;
   height: auto;
-  margin: clamp(10px, 3vh, 30px) 60px clamp(15px, 5vh, 77px) 77px;
+  margin: clamp(8px, 2vh, 30px) 60px clamp(10px, 3vh, 77px) 77px;
 }
 
 .activities-blocks{
@@ -42,7 +42,7 @@ main{
   gap: 20px;
   width: 100%;
   height: auto;
-  margin-top: clamp(15px, 4vh, 50px);
+  margin-top: clamp(10px, 2vh, 50px);
 }
 
 .nutriments-blocks{
