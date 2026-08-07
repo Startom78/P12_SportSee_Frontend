@@ -30,18 +30,11 @@ async function fetchUserData(path, collectionKey, userId, matchKey) {
     }
 }
 
-export function getUserById(userId) {
-    return fetchUserData(`/user/${userId}`, 'USER_MAIN_DATA', userId, 'id');
+function makeUserEndpoint(path, collectionKey, matchKey) {
+    return (userId) => fetchUserData(`/user/${userId}${path}`, collectionKey, userId, matchKey);
 }
 
-export function getUserActivity(userId) {
-    return fetchUserData(`/user/${userId}/activity`, 'USER_ACTIVITY', userId, 'userId');
-}
-
-export function getUserAverageSessions(userId) {
-    return fetchUserData(`/user/${userId}/average-sessions`, 'USER_AVERAGE_SESSIONS', userId, 'userId');
-}
-
-export function getUserPerformance(userId) {
-    return fetchUserData(`/user/${userId}/performance`, 'USER_PERFORMANCE', userId, 'userId');
-}
+export const getUserById = makeUserEndpoint('', 'USER_MAIN_DATA', 'id');
+export const getUserActivity = makeUserEndpoint('/activity', 'USER_ACTIVITY', 'userId');
+export const getUserAverageSessions = makeUserEndpoint('/average-sessions', 'USER_AVERAGE_SESSIONS', 'userId');
+export const getUserPerformance = makeUserEndpoint('/performance', 'USER_PERFORMANCE', 'userId');

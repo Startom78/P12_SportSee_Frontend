@@ -2,7 +2,7 @@ import { RadialBarChart, RadialBar, ResponsiveContainer } from 'recharts';
 import './score.css';
 
 function Score({ userMainData }){
-    const { todayScore } = userMainData;
+    const todayScore = userMainData.todayScore ?? userMainData.score;
     const data = [{ value: todayScore }];
 
     return(
