@@ -13,7 +13,7 @@ function Score({ userMainData }){
                 <div className="scoreChartContainer">
                     <div className="scoreCircleBackground" />
 
-                    <ResponsiveContainer width="100%" height="100%">
+                    <ResponsiveContainer width="100%" height="100%" initialDimension={{ width: 300, height: 300 }}>
                         <RadialBarChart
                             cx="50%"
                             cy="50%"

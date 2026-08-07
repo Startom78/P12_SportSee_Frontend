@@ -29,7 +29,7 @@ function Hexagongraphic({ userPerformance }){
     return(
         <>
             <div className="hexagon">
-                <ResponsiveContainer width="100%" height="100%">
+                <ResponsiveContainer width="100%" height="100%" initialDimension={{ width: 300, height: 300 }}>
                     <RadarChart data={data} outerRadius="65%">
                         <PolarGrid stroke="#FFFFFF" />
                         <PolarAngleAxis dataKey="subject" tick={<CustomTick />} />

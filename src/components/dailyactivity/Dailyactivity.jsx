@@ -46,7 +46,7 @@ function DailyActivity({ userActivity }){
                     </div>
                 </div>
 
-                <ResponsiveContainer width="100%" height="100%" className="chartContainer">
+                <ResponsiveContainer width="100%" height="100%" className="chartContainer" initialDimension={{ width: 800, height: 200 }}>
                     <BarChart data={data} barGap={8}>
                         <CartesianGrid strokeDasharray="3 3" vertical={false} />
                         <XAxis dataKey="day" tickLine={false} />

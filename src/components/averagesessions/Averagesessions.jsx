@@ -39,7 +39,7 @@ function AverageSessions({ userAverageSessions }){
         <>
             <div className="averageSessionsCss">
                 <div className ="averageSessionText"> Durée moyenne des <br></br>sessions  </div>
-                <ResponsiveContainer className="sessionsChartWrapper" width="100%" height="100%">
+                <ResponsiveContainer className="sessionsChartWrapper" width="100%" height="100%" initialDimension={{ width: 300, height: 300 }}>
                     <LineChart data={data} margin={{ top: 20, right: 0, left: 0, bottom: 5 }}>
                         <defs>
                             <linearGradient id="sessionsCursorGradient" x1="0" y1="0" x2="1" y2="0">
