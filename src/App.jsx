@@ -1,5 +1,3 @@
-import { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
 import Header from './components/header/Header'
 import Sidebar from './components/sidebar/Sidebar'
 import Greetings from './components/greetings/Greetings'
@@ -8,42 +6,12 @@ import Nutriments from './components/nutriments/Nutriments'
 import AverageSessions from './components/averagesessions/Averagesessions'
 import Hexagongraphic from './components/hexagondiagram/Hexagongraphic'
 import Score from './components/score/Score'
-import { getUserById, getUserActivity, getUserAverageSessions, getUserPerformance } from './services/Api.jsx'
+import { useCurrentUserData } from './services/Api.jsx'
 
 function App() {
-  const { userId } = useParams();
-  const currentUserId = Number(userId);
+  const { isReady, userMainData, userActivity, userAverageSessions, userPerformance } = useCurrentUserData();
 
-  const [userData, setUserData] = useState(null);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    let isCancelled = false;
-    setIsLoading(true);
-
-    Promise.all([
-      getUserById(currentUserId),
-      getUserActivity(currentUserId),
-      getUserAverageSessions(currentUserId),
-      getUserPerformance(currentUserId)
-    ]).then(([userMainData, userActivity, userAverageSessions, userPerformance]) => {
-      if (isCancelled) return;
-      setUserData({ userMainData, userActivity, userAverageSessions, userPerformance });
-      setIsLoading(false);
-    });
-
-    return () => {
-      isCancelled = true;
-    };
-  }, [currentUserId]);
-
-  if (isLoading) {
-    return null;
-  }
-
-  const { userMainData, userActivity, userAverageSessions, userPerformance } = userData;
-
-  if (!userMainData || !userActivity || !userAverageSessions || !userPerformance) {
+  if (!isReady) {
     return null;
   }
 
