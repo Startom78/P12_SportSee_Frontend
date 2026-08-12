@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import mockedData from './mockeddata.jsx';
 
 const API_BASE_URL = 'http://localhost:3000';
 
@@ -20,34 +19,27 @@ async function fetchFromBackend(path) {
     return data;
 }
 
-function findInMockedData(collectionKey, userId, matchKey) {
-    return mockedData[collectionKey].find((item) => item[matchKey] === userId) ?? null;
+function makeUserEndpoint(path) {
+    return (userId) => fetchFromBackend(`/user/${userId}${path}`);
 }
 
-async function fetchUserData(path, collectionKey, userId, matchKey) {
-    try {
-        return await fetchFromBackend(path);
-    } catch (backendError) {
-        return findInMockedData(collectionKey, userId, matchKey);
-    }
-}
 
-function makeUserEndpoint(path, collectionKey, matchKey) {
-    return (userId) => fetchUserData(`/user/${userId}${path}`, collectionKey, userId, matchKey);
-}
+/** Fonction pour récuperer les données d'un utilisateur */
 
-export const getUserById = makeUserEndpoint('', 'USER_MAIN_DATA', 'id');
-export const getUserActivity = makeUserEndpoint('/activity', 'USER_ACTIVITY', 'userId');
-export const getUserAverageSessions = makeUserEndpoint('/average-sessions', 'USER_AVERAGE_SESSIONS', 'userId');
-export const getUserPerformance = makeUserEndpoint('/performance', 'USER_PERFORMANCE', 'userId');
+export const getUserById = makeUserEndpoint('');
+export const getUserActivity = makeUserEndpoint('/activity');
+export const getUserAverageSessions = makeUserEndpoint('/average-sessions');
+export const getUserPerformance = makeUserEndpoint('/performance');
 
 export function useUserData(userId) {
     const [userData, setUserData] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         let isCancelled = false;
         setIsLoading(true);
+        setError(null);
 
         Promise.all([
             getUserById(userId),
@@ -58,6 +50,10 @@ export function useUserData(userId) {
             if (isCancelled) return;
             setUserData({ userMainData, userActivity, userAverageSessions, userPerformance });
             setIsLoading(false);
+        }).catch((fetchError) => {
+            if (isCancelled) return;
+            setError(fetchError.message);
+            setIsLoading(false);
         });
 
         return () => {
@@ -65,14 +61,19 @@ export function useUserData(userId) {
         };
     }, [userId]);
 
-    return { userData, isLoading };
+    return { userData, isLoading, error };
 }
+/** Hook pour récupérer les données de l'utilisateur courant */
 
 export function useCurrentUserData() {
     const { userId } = useParams();
     const currentUserId = Number(userId);
 
-    const { userData, isLoading } = useUserData(currentUserId);
+    const { userData, isLoading, error } = useUserData(currentUserId);
+
+    if (error) {
+        return { isReady: false, error };
+    }
 
     if (isLoading || !userData) {
         return { isReady: false };
