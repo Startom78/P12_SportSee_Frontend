@@ -9,7 +9,11 @@ import Score from './components/score/Score'
 import { useCurrentUserData } from './services/Api.jsx'
 
 function App() {
-  const { isReady, userMainData, userActivity, userAverageSessions, userPerformance } = useCurrentUserData();
+  const { isReady, error, userMainData, userActivity, userAverageSessions, userPerformance } = useCurrentUserData();
+
+  if (error) {
+    return <p>{error}</p>;
+  }
 
   if (!isReady) {
     return null;
