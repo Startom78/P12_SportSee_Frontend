@@ -22,7 +22,7 @@ function Score({ userMainData }){
                             barSize={8}
                             data={data}
                             startAngle={90}
-                            endAngle={90 + 360 * todayScore}
+                            endAngle={90 - 360 * todayScore}
                         >
                             <RadialBar
                                 dataKey="value"

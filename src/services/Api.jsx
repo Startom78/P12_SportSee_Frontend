@@ -50,7 +50,7 @@ export function useCurrentUserData() {
         ]).then(([userMainData, userActivity, userAverageSessions, userPerformance]) => {
             if (!isCancelled) setUserData({ userMainData, userActivity, userAverageSessions, userPerformance });
         }).catch(() => {
-            if (!isCancelled) setError("Désolé, un problème de chargement a eu lieu. Veuillez utiliser l'id 12 ou 18");
+            if (!isCancelled) setError("Désolé, un problème de chargement a eu lieu. Veuillez relancer la page");
         });
 
         return () => {
