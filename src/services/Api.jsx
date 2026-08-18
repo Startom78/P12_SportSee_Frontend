@@ -1,32 +1,52 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { findInMockedData } from './MockedDataServices.jsx';
 
 const API_BASE_URL = 'http://localhost:3000';
 
+class BackendUnavailableError extends Error {}
+
 async function fetchFromBackend(path) {
-    const response = await fetch(`${API_BASE_URL}${path}`);
+    let response;
+    try {
+        response = await fetch(`${API_BASE_URL}${path}`);
+    } catch {
+        throw new BackendUnavailableError('Impossible de contacter le serveur.');
+    }
 
     if (!response.ok) {
-        throw new Error(`Error ${response.status}`);
+        throw new Error(`Erreur ${response.status} lors de la récupération des données.`);
     }
 
     const { data } = await response.json();
 
     if (!data) {
-        throw new Error('No data found');
+        throw new Error('Aucune donnée trouvée pour cet utilisateur.');
     }
 
     return data;
 }
 
-function makeUserEndpoint(path) {
-    return (userId) => fetchFromBackend(`/user/${userId}${path}`);
+function makeUserEndpoint(path, collectionKey, matchKey = 'userId') {
+    return async (userId) => {
+        try {
+            return await fetchFromBackend(`/user/${userId}${path}`);
+        } catch (err) {
+            if (!(err instanceof BackendUnavailableError)) throw err;
+
+            const mockedItem = findInMockedData(collectionKey, userId, matchKey);
+            if (!mockedItem) throw err;
+
+            console.warn(`Backend indisponible : utilisation des données mockées pour "${collectionKey}".`);
+            return mockedItem;
+        }
+    };
 }
 
-export const getUserById = makeUserEndpoint('');
-export const getUserActivity = makeUserEndpoint('/activity');
-export const getUserAverageSessions = makeUserEndpoint('/average-sessions');
-export const getUserPerformance = makeUserEndpoint('/performance');
+export const getUserById = makeUserEndpoint('', 'USER_MAIN_DATA', 'id');
+export const getUserActivity = makeUserEndpoint('/activity', 'USER_ACTIVITY');
+export const getUserAverageSessions = makeUserEndpoint('/average-sessions', 'USER_AVERAGE_SESSIONS');
+export const getUserPerformance = makeUserEndpoint('/performance', 'USER_PERFORMANCE');
 
 /** Hook pour récupérer les données de l'utilisateur courant */
 
@@ -49,8 +69,8 @@ export function useCurrentUserData() {
             getUserPerformance(currentUserId)
         ]).then(([userMainData, userActivity, userAverageSessions, userPerformance]) => {
             if (!isCancelled) setUserData({ userMainData, userActivity, userAverageSessions, userPerformance });
-        }).catch(() => {
-            if (!isCancelled) setError("Désolé, un problème de chargement a eu lieu. Veuillez relancer la page");
+        }).catch((err) => {
+            if (!isCancelled) setError(err.message);
         });
 
         return () => {
