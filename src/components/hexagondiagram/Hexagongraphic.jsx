@@ -1,15 +1,6 @@
 import { RadarChart, PolarGrid, PolarAngleAxis, Radar, ResponsiveContainer } from 'recharts';
 import './hexagon.css';
 
-const hexagonTitles = {
-    cardio: 'Cardio',
-    energy: 'Energie',
-    endurance: 'Endurance',
-    strength: 'Force',
-    speed: 'Vitesse',
-    intensity: 'Intensité'
-};
-
 function CustomTick({ payload, x, y, textAnchor }) {
     return (
         <text x={x} y={y} textAnchor={textAnchor} fill="#FFFFFF" fontSize={12}>
@@ -18,14 +9,7 @@ function CustomTick({ payload, x, y, textAnchor }) {
     );
 }
 
-function Hexagongraphic({ userPerformance }){
-    const data = [...userPerformance.data]
-        .reverse()
-        .map(({ kind, value }) => ({
-            subject: hexagonTitles[userPerformance.kind[kind]],
-            value
-        }));
-
+function Hexagongraphic({ data }){
     return(
         <>
             <div className="hexagon">

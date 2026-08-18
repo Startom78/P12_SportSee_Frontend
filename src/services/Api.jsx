@@ -1,6 +1,18 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { findInMockedData } from './MockedDataServices.jsx';
+import {
+    normalizeUserMainData,
+    normalizeUserActivity,
+    normalizeUserAverageSessions,
+    normalizeUserPerformance,
+    formatGreetingsData,
+    formatScoreData,
+    formatNutrimentsData,
+    formatDailyActivityData,
+    formatAverageSessionsData,
+    formatPerformanceData
+} from './DataFormatters.jsx';
 
 const API_BASE_URL = 'http://localhost:3000';
 
@@ -67,8 +79,22 @@ export function useCurrentUserData() {
             getUserActivity(currentUserId),
             getUserAverageSessions(currentUserId),
             getUserPerformance(currentUserId)
-        ]).then(([userMainData, userActivity, userAverageSessions, userPerformance]) => {
-            if (!isCancelled) setUserData({ userMainData, userActivity, userAverageSessions, userPerformance });
+        ]).then(([rawUserMainData, rawUserActivity, rawUserAverageSessions, rawUserPerformance]) => {
+            if (isCancelled) return;
+
+            const userMainData = normalizeUserMainData(rawUserMainData);
+            const userActivity = normalizeUserActivity(rawUserActivity);
+            const userAverageSessions = normalizeUserAverageSessions(rawUserAverageSessions);
+            const userPerformance = normalizeUserPerformance(rawUserPerformance);
+
+            setUserData({
+                greetings: formatGreetingsData(userMainData),
+                score: formatScoreData(userMainData),
+                nutriments: formatNutrimentsData(userMainData),
+                dailyActivity: formatDailyActivityData(userActivity),
+                averageSessions: formatAverageSessionsData(userAverageSessions),
+                performance: formatPerformanceData(userPerformance)
+            });
         }).catch((err) => {
             if (!isCancelled) setError(err.message);
         });

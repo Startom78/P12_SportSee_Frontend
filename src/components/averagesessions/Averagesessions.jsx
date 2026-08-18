@@ -1,8 +1,6 @@
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, Rectangle } from 'recharts';
 import './averagesessions.css';
 
-const dayLabels = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
-
 function CustomTooltip({ active, payload }) {
     if (active && payload && payload.length) {
         return (
@@ -29,12 +27,7 @@ function CustomCursor({ points, top, left, width, height }) {
     );
 }
 
-function AverageSessions({ userAverageSessions }){
-    const data = userAverageSessions.sessions.map((session) => ({
-        day: dayLabels[session.day - 1],
-        sessionLength: session.sessionLength
-    }));
-
+function AverageSessions({ data }){
     return(
         <>
             <div className="averageSessionsCss">

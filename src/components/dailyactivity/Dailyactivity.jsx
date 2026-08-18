@@ -16,13 +16,7 @@ function CustomTooltip({ active, payload }) {
     return null;
 }
 
-function DailyActivity({ userActivity }){
-    const data = userActivity.sessions.map((session, index) => ({
-        day: index + 1,
-        kilogram: session.kilogram,
-        calories: session.calories
-    }));
-
+function DailyActivity({ data }){
     return(
         <>
             <div className="activityBackground">

@@ -1,8 +1,6 @@
 import './greetings.css'
 
-function Greetings({ userMainData }){
-    const { firstName } = userMainData.userInfos;
-
+function Greetings({ firstName }){
     return (
         <>
             <div className="greetings">

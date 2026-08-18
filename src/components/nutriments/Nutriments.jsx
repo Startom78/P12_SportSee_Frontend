@@ -1,7 +1,7 @@
 import './nutriments.css'
 
-function Nutriments({ userMainData }){
-    const { calorieCount, proteinCount, carbohydrateCount, lipidCount } = userMainData.keyData;
+function Nutriments({ data }){
+    const { calorieCount, proteinCount, carbohydrateCount, lipidCount } = data;
 
     return(
         <>

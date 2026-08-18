@@ -9,7 +9,7 @@ import Score from './components/score/Score'
 import { useCurrentUserData } from './services/Api.jsx'
 
 function App() {
-  const { isReady, error, userMainData, userActivity, userAverageSessions, userPerformance } = useCurrentUserData();
+  const { isReady, error, greetings, dailyActivity, averageSessions, performance, score, nutriments } = useCurrentUserData();
 
   if (error) {
     return <p>{error}</p>;
@@ -25,18 +25,18 @@ function App() {
       <div className='main-all'>
         <Sidebar />
       <main>
-        <Greetings userMainData={userMainData} />
+        <Greetings firstName={greetings.firstName} />
         <div className='main-blocks'>
             <div className='activities-blocks'>
-             <DailyActivity userActivity={userActivity} />
+             <DailyActivity data={dailyActivity} />
              <div className='graphics-blocks'>
-              <AverageSessions userAverageSessions={userAverageSessions} />
-              <Hexagongraphic userPerformance={userPerformance} />
-              <Score userMainData={userMainData} />
+              <AverageSessions data={averageSessions} />
+              <Hexagongraphic data={performance} />
+              <Score todayScore={score.todayScore} />
              </div>
             </div>
             <aside className='nutriments-blocks'>
-              <Nutriments userMainData={userMainData} />
+              <Nutriments data={nutriments} />
             </aside>
 
         </div>
