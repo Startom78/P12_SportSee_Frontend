@@ -15,6 +15,11 @@ const performanceKindLabels = {
  * forme unique et fiable.
  */
 
+/**
+ * Normalise les données principales d'un utilisateur.
+ * @param {Object} raw - Données brutes (API ou mock)
+ * @returns {Object} Données utilisateur normalisées
+ */
 export function normalizeUserMainData(raw) {
     const { id, userInfos, keyData, todayScore, score } = raw;
 
@@ -31,6 +36,11 @@ export function normalizeUserMainData(raw) {
     };
 }
 
+/**
+ * Normalise les données d'activité quotidienne d'un utilisateur.
+ * @param {Object} raw - Données brutes (API ou mock)
+ * @returns {Object} Données d'activité normalisées
+ */
 export function normalizeUserActivity(raw) {
     return {
         userId: raw.userId,
@@ -38,6 +48,11 @@ export function normalizeUserActivity(raw) {
     };
 }
 
+/**
+ * Normalise les données de durée moyenne des sessions d'un utilisateur.
+ * @param {Object} raw - Données brutes (API ou mock)
+ * @returns {Object} Données de sessions normalisées
+ */
 export function normalizeUserAverageSessions(raw) {
     return {
         userId: raw.userId,
@@ -45,6 +60,11 @@ export function normalizeUserAverageSessions(raw) {
     };
 }
 
+/**
+ * Normalise les données de performance d'un utilisateur.
+ * @param {Object} raw - Données brutes (API ou mock)
+ * @returns {Object} Données de performance normalisées
+ */
 export function normalizeUserPerformance(raw) {
     return {
         userId: raw.userId,
@@ -52,19 +72,30 @@ export function normalizeUserPerformance(raw) {
     };
 }
 
-/**
- * Formatage : transforme les données normalisées en props prêtes à
- * l'emploi pour chaque composant, sans logique de mapping côté UI.
- */
 
+/**
+ * Extrait les données du message de bienvenue.
+ * @param {Object} userMainData - Données utilisateur normalisées
+ * @returns {Object} Prénom de l'utilisateur
+ */
 export function formatGreetingsData(userMainData) {
     return { firstName: userMainData.firstName };
 }
 
+/**
+ * Extrait le score du jour.
+ * @param {Object} userMainData - Données utilisateur normalisées
+ * @returns {Object} Score du jour
+ */
 export function formatScoreData(userMainData) {
     return { todayScore: userMainData.todayScore };
 }
 
+/**
+ * Extrait les données nutritionnelles.
+ * @param {Object} userMainData - Données utilisateur normalisées
+ * @returns {Object} Comptes de calories, protéines, glucides et lipides
+ */
 export function formatNutrimentsData(userMainData) {
     return {
         calorieCount: userMainData.calorieCount,
@@ -74,6 +105,11 @@ export function formatNutrimentsData(userMainData) {
     };
 }
 
+/**
+ * Formate les sessions d'activité pour le graphique quotidien.
+ * @param {Object} userActivity - Données d'activité normalisées
+ * @returns {Array<Object>} Sessions avec numéro de jour, poids et calories
+ */
 export function formatDailyActivityData(userActivity) {
     return userActivity.sessions.map((session, index) => ({
         day: index + 1,
@@ -82,6 +118,11 @@ export function formatDailyActivityData(userActivity) {
     }));
 }
 
+/**
+ * Formate les sessions moyennes avec labels de jour lisibles.
+ * @param {Object} userAverageSessions - Données de sessions normalisées
+ * @returns {Array<Object>} Sessions avec label de jour et durée
+ */
 export function formatAverageSessionsData(userAverageSessions) {
     return userAverageSessions.sessions.map((session) => ({
         day: dayLabels[session.day - 1],
@@ -89,6 +130,11 @@ export function formatAverageSessionsData(userAverageSessions) {
     }));
 }
 
+/**
+ * Formate les données de performance pour le graphique radar.
+ * @param {Object} userPerformance - Données de performance normalisées
+ * @returns {Array<Object>} Données avec libellé de catégorie et valeur, ordre inversé
+ */
 export function formatPerformanceData(userPerformance) {
     return [...userPerformance.data]
         .reverse()
